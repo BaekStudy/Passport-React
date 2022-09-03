@@ -1,4 +1,5 @@
 const UserModel = require("../Model/UserModel");
+const bcrypt = require("bcrypt");
 
 exports.회원가입 = async (req, res) => {
   const { username, password } = req?.body;
@@ -11,7 +12,7 @@ exports.회원가입 = async (req, res) => {
     if (doc) res.send("User Already Exists");
     if (!doc) {
       const hashedPassword = await bcrypt.hash(password, 10);
-      const newUser = new User({
+      const newUser = new UserModel({
         username,
         password: hashedPassword,
       });
@@ -21,10 +22,10 @@ exports.회원가입 = async (req, res) => {
   });
 };
 exports.로그인 = (req, res) => {
-  res.sned("로그인 성공");
+  res.send("success");
 };
 exports.req유저보기 = (req, res) => {
-  res.send(req.user);
+  res.json({ message: req.user });
 };
 exports.로그아웃 = (req, res) => {
   req.logout();

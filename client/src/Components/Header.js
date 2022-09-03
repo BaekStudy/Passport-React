@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { myContext } from "../Pages/Context";
+import { myContext } from "../Context/Context";
 import Axios from "axios";
 
-export default function NavBar() {
+export default function Header() {
   const ctx = useContext(myContext);
 
   const logout = () => {

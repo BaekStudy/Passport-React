@@ -1,27 +1,27 @@
 import React, { useState } from "react";
-import axios, { AxiosResponse } from "axios";
+import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  let navigate = useNavigate();
 
   const register = () => {
-    axios
-      .post(
-        "http://localhost:4000/auth/register",
-        {
-          username,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        if (res.data === "success") {
-          window.location.href = "/login";
-        }
-      });
+    Axios.post(
+      "http://localhost:4000/auth/register",
+      {
+        username,
+        password,
+      },
+      {
+        withCredentials: true,
+      }
+    ).then((res) => {
+      if (res.data === "success") {
+        navigate("/");
+      }
+    });
   };
 
   return (

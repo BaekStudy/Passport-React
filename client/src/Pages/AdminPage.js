@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
-import Axios, { AxiosResponse } from "axios";
-import { myContext } from "./Context";
+import Axios from "axios";
+import { myContext } from "../Context/Context";
 
 export default function AdminPage() {
   const ctx = useContext(myContext);
@@ -8,7 +8,7 @@ export default function AdminPage() {
   const [data, setData] = useState();
   const [selectedUser, setSelectedUser] = useState();
   useEffect(() => {
-    Axios.get("http://localhost:4000/getallusers", {
+    Axios.get("http://localhost:4000/auth/getallusers", {
       withCredentials: true,
     }).then((res) => {
       setData(
